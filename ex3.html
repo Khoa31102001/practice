@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Tips Countdown Timer</title>
+  </head>
+  <body>
+    <div id="tip"></div>
+    <div id="countdown"></div>
+
+    <script>
+      const tips = [
+        '!![] is true',
+        'You can use destructuring assignment to swap value',
+        'Using ?. to check data if it is null'
+      ];
+      let currentTipIndex = 0;
+
+      function showTip() {
+        const tipElement = document.getElementById('tip');
+        tipElement.innerText = tips[currentTipIndex];
+      }
+
+      function showCountdown(seconds) {
+        const countdownElement = document.getElementById('countdown');
+        countdownElement.innerText = `Next tip in ${seconds} seconds`;
+      }
+
+      function countdown() {
+        const seconds = 10 - currentTipIndex;
+        showCountdown(seconds);
+
+        if (seconds === 0) {
+          currentTipIndex = (currentTipIndex + 1) % tips.length;
+          showTip();
+        }
+
+        setTimeout(countdown, 1000);
+      }
+
+      showTip();
+      countdown();
+    </script>
+  </body>
+</html>
